@@ -29,3 +29,15 @@ FROM
 	DimProduct
 WHERE Weight > 100
 ORDER BY Weight DESC
+
+-- EXERCICIO 04
+
+SELECT
+	StoreName AS 'Nome da loja',
+	OpenDate AS 'Data de Abertura',
+	EmployeeCount AS 'Numero de funcionarios'
+FROM
+	DimStore
+Where Status = 'On'
+
+-- Exercicio 05
