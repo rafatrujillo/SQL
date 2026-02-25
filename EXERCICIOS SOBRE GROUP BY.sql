@@ -121,3 +121,76 @@ SELECT
 FROM
 	DimProduct
 GROUP BY ColorName
+
+
+-- EXERCICIO 05
+
+SELECT * FROM DimProduct
+
+SELECT
+	StockTypeName,
+	SUM(Weight)
+FROM
+	DimProduct
+WHERE BrandName = 'Contoso'
+GROUP BY StockTypeName
+ORDER BY SUM(Weight) DESC
+
+-- EXERCICIO 06
+
+SELECT
+	BrandName,
+	COUNT(Distinct ColorName)
+FROM
+	DimProduct
+GROUP BY BrandName
+
+
+-- EXERCICIO 07
+
+SELECT * FROM DimCustomer
+
+SELECT
+	Gender AS 'Genero',
+	COUNT(*) AS 'Total de Clientes',
+	AVG(YearlyIncome) AS 'Media Salarial'
+FROM
+	DimCustomer
+WHERE Gender IS NOT NULL
+GROUP BY Gender
+
+-- EXERCICIO 08
+
+SELECT 
+	Education,
+	COUNT(*) AS 'Total de Clientes',
+	AVG(YearlyIncome) AS 'Media Salarial'
+FROM
+	DimCustomer
+WHERE Education IS NOT NULL
+GROUP BY Education
+
+-- EXERCICIO 09
+
+SELECT * FROM DimEmployee
+
+SELECT
+	DepartmentName AS 'Departamento',
+	COUNT(*) AS 'Total de Funcionarios'
+FROM
+	DimEmployee
+WHERE EndDate IS NULL
+GROUP BY DepartmentName
+
+-- EXERCICIO 10
+
+SELECT * FROM DimEmployee
+
+SELECT
+	Title AS 'Cargo',
+	SUM(VacationHours) AS 'Horas de Ferias'
+FROM
+	DimEmployee
+WHERE DepartmentName IN ('Production', 'Marketing', 'Engineering', 'Finance') AND Gender = 'F' AND HireDate BETWEEN '19990101' AND '20001231'
+GROUP BY Title
+
