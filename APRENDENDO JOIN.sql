@@ -107,3 +107,32 @@ FROM
 FULL JOIN DimProductSubcategory
 	ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductCategoryKey
 WHERE ProductKey IS NULL OR ProductSubcategoryName IS NULL
+
+-- CROSS JOIN
+
+/*
+SELECT
+	marca,
+	nome_subcategoria
+FROM
+	marca CROSS JOIN subcategoria
+*/
+
+-- MULTIPLOS JOINS
+
+SELECT ProductKey, ProductName, ProductSubcategoryKey FROM DimProduct
+SELECT ProductSubcategoryKey, ProductSubcategoryName, ProductCategoryKey FROM DimProductSubcategory
+SELECT ProductCategoryKey, ProductCategoryName FROM DimProductCategory
+
+SELECT
+	ProductKey,
+	ProductName,
+	DimProduct.ProductSubcategoryKey,
+	ProductCategoryName
+FROM
+	DimProduct
+INNER JOIN DimProductSubcategory
+	ON DimProduct.ProductSubcategoryKey = DimProductSubcategory.ProductSubcategoryKey
+		INNER JOIN DimProductCategory
+			ON DimProductSubcategory.ProductCategoryKey = DimProductCategory.ProductCategoryKey
+/* Relacao entre 3 tabelas utilizando um duplo INNER JOIN */
